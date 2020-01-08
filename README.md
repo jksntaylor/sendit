@@ -1,6 +1,6 @@
-# sendit
+# SendIT - Local Ski Resort Informative Dashboard
 
-## Project setup
+## Project setup (if cloning)
 ```
 npm install
 ```
@@ -14,6 +14,3 @@ npm run serve
 ```
 npm run build
 ```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
