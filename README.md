@@ -6,7 +6,7 @@ Vue.js | SASS | REST APIs
 
 ## Designs
 
-[Dribbble] (https://www.dribbble.com/jksntaylor)
+[Dribbble](https://www.dribbble.com/jksntaylor)
 
 ## Cloning Instructions
 
