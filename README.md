@@ -1,16 +1,26 @@
 # SendIT - Local Ski Resort Informative Dashboard
 
-## Project setup (if cloning)
+## Tech Stack
+
+Vue.js | SASS | REST APIs
+
+## Designs
+
+[Dribbble] (https://www.dribbble.com/jksntaylor)
+
+## Cloning Instructions
+
+#### 
 ```
 npm install
 ```
 
-### Compiles and hot-reloads for development
+#### Dev Compiling and Hot-Reloads
 ```
 npm run serve
 ```
 
-### Compiles and minifies for production
+#### Production Compiling and Minification
 ```
 npm run build
 ```
