@@ -1,4 +1,4 @@
-# SendIT - Local Ski Resort Informative Dashboard
+# SendIT - Local Ski Resort Information
 
 ## Tech Stack
 
