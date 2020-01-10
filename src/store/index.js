@@ -5,24 +5,15 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    hasData: false,
+    onboard: true,
     name: '',
     resort: ''
   },
   mutations: {
-    name (state, name) {
-      state.name = name;
-    },
-    nesort (state, resort) {
-      state.resort = resort;
-    },
-    data (state, data) {
-      state.hasData = data;
+    update (state, obj) {
+      state.name = obj.name;
+      state.resort = obj.resort;
+      state.onboard = obj.onboard
     }
-    
-  },
-  actions: {
-  },
-  modules: {
   }
 })
