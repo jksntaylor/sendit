@@ -11,10 +11,10 @@
             <h3 class="resort-label">Resort</h3>
             <select v-model="resort " class="resort-input" v-bind:class="{ missing: noResort }">
                 <option value=""/>
-                <option value="Alta">Alta</option>
-                <option value="Snowbird">Snowbird</option>
-                <option value="Brighton">Brighton</option>
-                <option value="Solitude">Solitude</option>
+                <option value="alta">Alta</option>
+                <option value="snowbird">Snowbird</option>
+                <option value="brighton">Brighton</option>
+                <option value="solitude">Solitude</option>
             </select>
         </div>
         <button @click="submit" class="submit-button">SEND IT</button>
@@ -43,6 +43,7 @@ import Location from "./Location.vue";
 import Weather from "./Weather.vue";
 import Webcams from "./Webcams.vue";
 import Feed from './Feed.vue';
+import axios from 'axios';
 
 export default {
     name: 'Dashboard',
@@ -59,6 +60,9 @@ export default {
     mounted: function () {
         if (this.$data.name&&this.$data.resort) {
             this.$store.commit('hasCookie');
+            axios.get(`https://cors-anywhere.herokuapp.com/https://liftie.info/api/resort/${this.$data.resort}`).then(res => {
+                this.$store.commit('resortInfo', res.data);
+            })
         }
     },
     components: {
