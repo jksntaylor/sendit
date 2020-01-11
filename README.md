@@ -4,9 +4,9 @@
 
 Vue.js | SASS | REST APIs
 
-## Designs
+## Design
 
-[Dribbble](https://www.dribbble.com/jksntaylor)
+[Dribbble](https://dribbble.com/shots/9460645-SendIT-Chrome-Extension)
 
 ## Cloning Instructions
 
