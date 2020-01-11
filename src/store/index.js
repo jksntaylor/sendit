@@ -7,13 +7,14 @@ export default new Vuex.Store({
   state: {
     onboard: true,
     name: '',
-    resort: ''
+    resort: '',
+    resortInfo: {}
   },
   mutations: {
-    update (state, obj) {
+    onboard (state, obj) {
       state.name = obj.name;
       state.resort = obj.resort;
-      state.onboard = obj.onboard
+      state.onboard = false
     }
   }
 })

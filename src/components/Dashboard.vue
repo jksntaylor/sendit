@@ -57,10 +57,13 @@ export default {
         }
     },
     mounted: function () {
-        // Sets the cookies to data when the component is mounted
-        this.$data.onboard = this.$store.state.hasData;
-        this.$data.name = this.$cookie.get('name');
-        this.$data.resort = this.$cookie.get('resort');
+        if (this.$store.state.onboard) { // Sets the cookies to data when the component is mounted and cookie exists
+            this.$data.name = this.$cookie.get('name');
+            this.$data.resort = this.$cookie.get('resort');
+        }
+        if (this.$data.resort) {
+
+        }
     },
     components: {
         Lifts,
@@ -78,7 +81,7 @@ export default {
             if (name&&resort) { // if both are truthy, it sets cookies that expire in 5 years, might be overkill but whatever
                 this.$cookie.set('name', name, {expires: '5Y'});
                 this.$cookie.set('resort', resort, {expires: '5Y'});
-                this.$store.commit('update', {name: name, resort: resort, onboard: false})
+                this.$store.commit('onboard', {name: name, resort: resort})
             }
         },
         clearCookie() { // ONLY FOR DEV, DELETE IN PRODUCTION
