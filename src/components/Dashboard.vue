@@ -33,7 +33,7 @@
         </section>
         <Feed/>
         <Lifts/>
-        
+        <button @click="clearCookie" class="clearCookie">Clear Cookie (DEV ONLY)</button>
     </div>
 </template>
 
@@ -57,12 +57,8 @@ export default {
         }
     },
     mounted: function () {
-        if (this.$store.state.onboard) { // Sets the cookies to data when the component is mounted and cookie exists
-            this.$data.name = this.$cookie.get('name');
-            this.$data.resort = this.$cookie.get('resort');
-        }
-        if (this.$data.resort) {
-
+        if (this.$data.name&&this.$data.resort) {
+            this.$store.commit('hasCookie');
         }
     },
     components: {
@@ -81,7 +77,7 @@ export default {
             if (name&&resort) { // if both are truthy, it sets cookies that expire in 5 years, might be overkill but whatever
                 this.$cookie.set('name', name, {expires: '5Y'});
                 this.$cookie.set('resort', resort, {expires: '5Y'});
-                this.$store.commit('onboard', {name: name, resort: resort})
+                this.$store.commit('submitOnboard', {name: name, resort: resort})
             }
         },
         clearCookie() { // ONLY FOR DEV, DELETE IN PRODUCTION
