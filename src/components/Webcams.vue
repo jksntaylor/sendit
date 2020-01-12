@@ -10,7 +10,7 @@
         background="#ababab"
         @sliding-start="onSlideStart"
         @sliding-end="onSlideEnd">
-            <b-carousel-slide v-bind:key="index" v-for="(item, index) in cams">
+            <b-carousel-slide v-bind:key="index" v-for="(item, index) in this.$store.state.resortInfo.webcams">
                 <h1 class="name">{{item.name}}</h1>
                 <a v-bind:href="item.source" class="webcam-link" target="_blank" rel="noopener noreferrer">
                     <img v-bind:src="item.image" v-bind:alt="item.name" class="webcam-still">
@@ -25,7 +25,6 @@ export default {
     name: 'Webcams',
     data() {
         return {
-            cams: this.$store.state.resortInfo.webcams,
             slide: 0,
             sliding: null
         }

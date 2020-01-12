@@ -25,7 +25,7 @@
         <header>
             <h1>Good Morning, {{name}}</h1>
             <h2 class="time">It is {{time}} on {{date}}</h2>
-            <Location/>
+            <Location @update="changeResort"/>
         </header>
         <div class="info" v-if="api">
             <section class="left">
@@ -104,6 +104,10 @@ export default {
                 this.$store.commit('resortInfo', res.data);
                 this.$data.api = true;
             })
+        },
+        changeResort() {
+            this.$data.resort = this.$cookie.get('resort');
+            this.getInfo();
         }
     }
 }

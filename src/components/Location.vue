@@ -3,15 +3,17 @@
         <h1 class="my-resort">My Resort: {{this.$cookie.get('resort')}}</h1>
         <button v-if="!edit" @click="openEdit" class="change">change</button>
         <div v-else class="editor">
-            <select name="resorts">
-                <option value="Alta">Alta</option>
-                <option value="Brighton">Brighton</option>
-                <option value="Park City">Park City</option>
-                <option value="Snowbird">Snowbird</option>
-                <option value="Solitude">Solitude</option>
+            <select v-model="newResort" name="resorts">
+                <option value="alta">Alta</option>
+                <option value="brighton">Brighton</option>
+                <option value="deer-valley">Deer Valley</option>
+                <option value="jackson-hole">Jackson Hole</option>
+                <option value="parkcity">Park City</option>
+                <option value="snowbird">Snowbird</option>
+                <option value="solitude">Solitude</option>
             </select>
             <button @click="cancel" class="cancel">Cancel</button>
-            <button class="confirm">Confirm</button>
+            <button @click="confirm" class="confirm">Confirm</button>
         </div>
     </div>
 </template>
@@ -21,7 +23,8 @@ export default {
     name: 'Location',
     data() {
         return {
-            edit: false
+            edit: false,
+            newResort: ''
         }
     },
     methods: {
@@ -32,7 +35,9 @@ export default {
             this.$data.edit = false;
         },
         confirm() {
-
+            this.$cookie.set('resort', this.$data.newResort, {expires: '5Y'});
+            this.$data.edit = false;
+            this.$emit('update');
         }
     }
 }
