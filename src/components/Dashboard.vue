@@ -60,9 +60,7 @@ export default {
     mounted: function () {
         if (this.$data.name&&this.$data.resort) {
             this.$store.commit('hasCookie');
-            axios.get(`https://cors-anywhere.herokuapp.com/https://liftie.info/api/resort/${this.$data.resort}`).then(res => {
-                this.$store.commit('resortInfo', res.data);
-            })
+            this.getInfo();
         }
     },
     components: {
@@ -82,11 +80,17 @@ export default {
                 this.$cookie.set('name', name, {expires: '5Y'});
                 this.$cookie.set('resort', resort, {expires: '5Y'});
                 this.$store.commit('submitOnboard', {name: name, resort: resort})
+                this.getInfo();
             }
         },
         clearCookie() { // ONLY FOR DEV, DELETE IN PRODUCTION
             this.$cookie.delete('name');
             this.$cookie.delete('resort');
+        },
+        getInfo() {
+            axios.get(`https://cors-anywhere.herokuapp.com/https://liftie.info/api/resort/${this.$data.resort}`).then(res => {
+                this.$store.commit('resortInfo', res.data);
+            })
         }
     }
 }

@@ -1,15 +1,19 @@
 <template>
-    <div class="weather">{{greeting}}</div>
+    <div class="weather">
+        <header class="header">
+            <div class="icon"></div>
+            <div class="title">
+                <h1 class="temperature">{{this.$store.state.resortInfo.weather.temperature.max}}°F</h1>
+                <h1 class="conditions">{{this.$store.state.resortInfo.weather.conditions}}</h1>
+            </div>
+        </header>
+        <p class="summary">{{this.$store.state.resortInfo.weather.text}}</p>
+    </div>
 </template>
 
 <script>
 export default {
-    name: 'Weather',
-    data() {
-        return {
-            greeting: 'HelloWeather'
-        }
-    }
+    name: 'Weather'
 }
 </script>
 
