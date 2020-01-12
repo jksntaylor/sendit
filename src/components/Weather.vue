@@ -1,6 +1,6 @@
 
 <template>
-    <div v-if="weather.conditions" class="weather">
+    <div class="weather">
         <header class="header">
             <div class="icon"></div>
             <div class="title">
@@ -9,9 +9,6 @@
             </div>
         </header>
         <p class="summary">{{weather.text}}</p>
-    </div>
-    <div v-else class="lazy">
-
     </div>
 </template>
 
