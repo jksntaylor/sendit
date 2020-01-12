@@ -1,5 +1,7 @@
 <template>
-    <div class="cams">{{greeting}}</div>
+    <div class="cams">
+        
+    </div>
 </template>
 
 <script>

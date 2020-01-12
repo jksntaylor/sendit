@@ -27,13 +27,24 @@
             <h2 class="time">It is {{time}} on {{date}}</h2>
             <Location/>
         </header>
-        <section class="left">
-            <Weather/>
-            <Webcams/>
-        </section>
-        <Feed/>
-        <Lifts/>
-        <button @click="clearCookie" class="clearCookie">Clear Cookie (DEV ONLY)</button>
+        <div class="info" v-if="api">
+            <section class="left">
+                <Weather/>
+                <Webcams/>
+            </section>
+            <Feed/>
+            <Lifts/>
+            <button @click="clearCookie" class="clearCookie">Clear Cookie (DEV ONLY)</button>
+        </div>
+        <div v-else class="skeleton"> <!-- CHANGE LATER TO HAVE SKELETON LOADERS -->
+            <section class="left">
+                <div>Weather</div>
+                <div>Webcams</div>
+            </section>
+            <div>TwitterFeed</div>
+            <div>Lift Status</div>
+            <button @click="clearCookie" class="clearCookie">Clear Cookie (DEV ONLY)</button>
+        </div>
     </div>
 </template>
 
@@ -54,7 +65,8 @@ export default {
             time: new Date().toLocaleTimeString([], {hour: "numeric", minute: "2-digit"}), // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toLocaleTimeString
             date: new Date().toLocaleDateString([], {weekday: "long", month: "long", day: "numeric", year:"numeric"}),
             noResort: false,
-            noName: false
+            noName: false,
+            api: false
         }
     },
     mounted: function () {
@@ -90,6 +102,7 @@ export default {
         getInfo() {
             axios.get(`https://cors-anywhere.herokuapp.com/https://liftie.info/api/resort/${this.$data.resort}`).then(res => {
                 this.$store.commit('resortInfo', res.data);
+                this.$data.api = true;
             })
         }
     }

@@ -10,9 +10,13 @@ import Dashboard from './components/Dashboard.vue'
 export default {
   name: 'app',
   components: {
-    Dashboard
-  }
-}
+    Dashboard,
+  },
+
+  data: () => ({
+    //
+  }),
+};
 </script>
 
 <style lang="scss">
