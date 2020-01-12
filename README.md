@@ -2,7 +2,7 @@
 
 ## Tech Stack
 
-Vue.js | SASS | REST APIs
+Vue.js | SCSS | Axios
 
 ## Design
 
