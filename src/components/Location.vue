@@ -1,6 +1,6 @@
 <template>
     <div class="location">
-        <h1 class="my-resort">My Resort: {{this.$cookie.get('resort')}}</h1>
+        <h1 class="my-resort">My Resort: {{this.$store.state.resortInfo.name}}</h1>
         <button v-if="!edit" @click="openEdit" class="change">change</button>
         <div v-else class="editor">
             <select v-model="newResort" name="resorts">
