@@ -4,8 +4,7 @@
         <h1 class="welcome">Welcome to SendIT</h1>
         <h2 class="explanation">We just need a tiny bit of information</h2>
         <div class="name-container">
-            <h3 class="name-label">Name</h3>
-            <input v-model="name" class="name-input" v-bind:class="{ missing: noName }"/>
+            <v-text-field v-model="name" label="Name" class="name-input" v-bind:class="{ missing: noName }"/>
         </div>
         <div class="resort-container">
             <h3 class="resort-label">Resort</h3>
@@ -134,17 +133,6 @@ export default {
                width: 30%;
                text-align: right;
                margin: 0;
-           }
-
-           .name-input, .resort-input {
-               width: 60%;
-               background: none;
-               border: none;
-               outline: none;
-               color: white;
-               font-size: 28px;
-               border-bottom: 1px solid white;
-               border-radius: 0;
            }
        }
     }

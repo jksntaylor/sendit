@@ -1,23 +1,16 @@
 import Vue from 'vue'
 import VueCookie from 'vue-cookie';
-// import { BootstrapVueIcons } from 'bootstrap-vue'
 import App from './App.vue'
 import './registerServiceWorker'
 import store from './store'
-// import 'bootstrap/dist/css/bootstrap.css'
-// import 'bootstrap-vue/dist/bootstrap-vue.css'
-// import { BCarousel, BCarouselSlide, BProgress, BFormSelect } from 'bootstrap-vue';
+import vuetify from './plugins/vuetify';
+import 'vuetify/dist/vuetify.min.css';
 
 Vue.config.productionTip = false
 Vue.use(VueCookie);
-// Vue.use(BootstrapVueIcons);
-
-// Vue.component('b-carousel', BCarousel);
-// Vue.component('b-carousel-slide', BCarouselSlide);
-// Vue.component('b-progress', BProgress);
-// Vue.component('b-form-select', BFormSelect);
 
 new Vue({
   store,
+  vuetify,
   render: function (h) { return h(App) }
 }).$mount('#app')
