@@ -2,7 +2,7 @@
     <!-- rendered if cookie needs user data -->
     <div class="onboarding" v-if="this.$store.state.onboard">
         <h1 class="welcome">Welcome to SendIT</h1>
-        <h2>We just need a tiny bit of information</h2>
+        <h2 class="explanation">We just need a tiny bit of information</h2>
         <div class="name-container">
             <h3 class="name-label">Name</h3>
             <input v-model="name" class="name-input" v-bind:class="{ missing: noName }"/>
@@ -10,15 +10,10 @@
         <div class="resort-container">
             <h3 class="resort-label">Resort</h3>
             <select v-model="resort " class="resort-input" v-bind:class="{ missing: noResort }">
-                <option value=""/>
-                <option value="alta">Alta</option>
-                <option value="snowbird">Snowbird</option>
-                <option value="brighton">Brighton</option>
-                <option value="solitude">Solitude</option>
+                
             </select>
         </div>
         <button @click="submit" class="submit-button">SEND IT</button>
-        <button @click="clearCookie" class="clearCookie">Clear Cookie (DEV ONLY)</button>
     </div>
     <!-- rendered if cookie has user data -->
     <div v-else class="dashboard">
@@ -95,10 +90,6 @@ export default {
                 this.getInfo();
             }
         },
-        clearCookie() { // ONLY FOR DEV, DELETE IN PRODUCTION
-            this.$cookie.delete('name');
-            this.$cookie.delete('resort');
-        },
         getInfo() {
             axios.get(`https://cors-anywhere.herokuapp.com/https://liftie.info/api/resort/${this.$data.resort}`).then(res => {
                 this.$store.commit('resortInfo', res.data);
@@ -114,7 +105,47 @@ export default {
 </script>
 
 <style scoped lang="scss">
-    .missing {
-        border: 2px solid red;
+    .onboarding {
+    //    width: 700px;
+    //    height: 450px;
+       background-color: rgba(70, 115, 136, .6);
+       border-radius: 20px;
+       padding: 50px;
+       color: white;
+
+       .welcome {
+           font-size: 60px;
+           font-weight: 900;
+       }
+
+       .explanation {
+           font-size: 32px;
+           font-weight: 200;
+       }
+
+       .name-container, .resort-container {
+           display: flex;
+           width: 70%;
+           justify-content: space-between;
+           margin-left: 15%;
+           margin-top: 20px;
+
+           .name-label, .resort-label {
+               width: 30%;
+               text-align: right;
+               margin: 0;
+           }
+
+           .name-input, .resort-input {
+               width: 60%;
+               background: none;
+               border: none;
+               outline: none;
+               color: white;
+               font-size: 28px;
+               border-bottom: 1px solid white;
+               border-radius: 0;
+           }
+       }
     }
 </style>
