@@ -24,21 +24,29 @@
                 </v-col>
         </v-row>
         <v-row class="content" v-if="api">
-            <section class="left">
+            <v-col>
                 <Weather/>
                 <Webcams/>
-            </section>
-            <Feed/>
-            <Lifts/>
+            </v-col>
+            <v-col>
+                <Lifts/>
+            </v-col>
+            <v-col>
+                <Feed/>
+            </v-col>
             <button @click="clearCookie" class="clearCookie">Clear Cookie (DEV ONLY)</button>
         </v-row>
         <v-row v-else class="skeleton"> <!-- CHANGE LATER TO HAVE SKELETON LOADERS -->
-            <section class="left">
+            <v-col>
                 <div>Weather</div>
                 <div>Webcams</div>
-            </section>
-            <div>TwitterFeed</div>
-            <div>Lift Status</div>
+            </v-col>
+            <v-col>
+                <div>TwitterFeed</div>
+            </v-col>
+            <v-col>
+                <div>Lift Status</div>
+            </v-col>
             <button @click="clearCookie" class="clearCookie">Clear Cookie (DEV ONLY)</button>
         </v-row>
     </div>
