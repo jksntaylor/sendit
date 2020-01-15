@@ -19,5 +19,36 @@ export default {
 </script>
 
 <style scoped lang="scss">
+    .weather {
+        background-color: rgba(70, 115, 136, .8);
+        border-radius: 15px;
+        padding: 20px;
 
+        .header {
+            display: flex;
+        }
+
+        .summary {
+            display: flex;
+            border-bottom: 2px solid white;
+            line-height: 30px;
+            padding-bottom: 10px;
+
+            .conditions, .temperature {
+                font-size: 28px;
+                font-weight: 900;
+            }
+            .conditions {
+                margin-left: 20px;
+                text-align: right;
+            }
+        }
+
+        .report {
+            padding-top: 10px;
+            font-weight: 300;
+            text-align: left;
+            margin: 0;
+        }
+    }
 </style>

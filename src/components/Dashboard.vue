@@ -185,6 +185,12 @@ export default {
     }
     .content {
         height: calc(100% - 156px);
-        justify-content: space-between
+        justify-content: space-between;
+        color: white;
+        padding-top: 30px;
+
+        .col {
+            height: 100%;
+        }
     }
 </style>
