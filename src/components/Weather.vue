@@ -34,7 +34,7 @@ export default {
             padding-bottom: 10px;
 
             .conditions, .temperature {
-                font-size: 28px;
+                font-size: 24px;
                 font-weight: 900;
             }
             .conditions {
