@@ -21,7 +21,7 @@ export default {
 
 <style scoped lang="scss">
     .lifts {
-        max-height: 100%;
+        height: 100%;
         .lift-container {
             max-height: calc(100% - 46px);
             overflow-y: scroll;
