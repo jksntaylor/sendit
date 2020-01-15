@@ -24,7 +24,7 @@
                 </v-col>
         </v-row>
         <v-row class="content" v-if="api">
-            <v-col>
+            <v-col class="left-column">
                 <Weather/>
                 <Webcams/>
             </v-col>
@@ -201,6 +201,11 @@ export default {
 
         .col {
             height: 100%;
+        }
+
+        .left-column {
+            display: flex;
+            flex-direction: column;
         }
     }
 </style>

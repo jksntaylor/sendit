@@ -32,18 +32,19 @@ export default {
             .tweet {
                 background-color: rgba(0,0,0,0.5);
                 border-radius: 15px;
-                margin-top: 20px;
+                margin-top: 10px;
                 padding: 10px;
                 .text {
                     line-height: 20px;
                     text-align: left;
+                    font-weight: 900;
                 }
                 .media {
                     width: 100%;
                 }
                 .date {
-                    text-align: right;
-                    width: 100%;
+                    margin-right: 0;
+                    margin-left: 70%;
                 }
             }
         }

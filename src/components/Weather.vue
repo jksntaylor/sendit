@@ -20,13 +20,15 @@ export default {
 
 <style scoped lang="scss">
     .weather {
-        margin-bottom: 30px;
+        margin-bottom: 24px;
         .header {
             display: flex;
         }
 
         .summary {
             display: flex;
+            flex: 1;
+            justify-content: space-between;
             border-bottom: 2px solid white;
             line-height: 30px;
             padding-bottom: 10px;
@@ -46,6 +48,8 @@ export default {
             font-weight: 300;
             text-align: left;
             margin: 0;
+            overflow-y: scroll;
+            height: calc(100% - 72px);
         }
     }
 </style>
