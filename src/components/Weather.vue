@@ -20,10 +20,7 @@ export default {
 
 <style scoped lang="scss">
     .weather {
-        background-color: rgba(70, 115, 136, .8);
-        border-radius: 15px;
-        padding: 20px;
-
+        margin-bottom: 30px;
         .header {
             display: flex;
         }

@@ -1,6 +1,6 @@
 <template>
     <div class="cams">
-        
+        <h1 class="module-title">Cams</h1>
     </div>
 </template>
 

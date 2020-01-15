@@ -15,7 +15,8 @@ export default new Vuex.Store({
       {api: "brighton", display: "Brighton"},
       {api: "parkcity", display: "Park City"},
       {api: "snowbird", display: "Snowbird"},
-      {api: "solitude", display: "Solitude"}
+      {api: "solitude", display: "Solitude"},
+      {api: "verbier", display: "Verbier"}
     ]
   },
   mutations: {

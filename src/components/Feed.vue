@@ -1,6 +1,6 @@
 <template>
     <div class="feed">
-        <h1 class="title">Recent Tweets</h1>
+        <h1 class="module-title">Recent Tweets</h1>
         <h2 class="username">@{{this.$store.state.resortInfo.twitter.user}}</h2>
         <article v-bind:key="index" v-for="(tweet, index) in this.$store.state.resortInfo.twitter.tweets" class="tweet">
             <span class="date">{{new Date(tweet.created_at).toLocaleDateString('en-US')}}</span>

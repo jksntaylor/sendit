@@ -160,8 +160,18 @@ export default {
         overflow: visible !important;
     }
 
-    .theme--light.v-icon {
+    .mdi-menu-down {
         color: white !important;
+    }
+    .weather, .cams, .lifts, .feed {
+        background-color: rgba(70, 115, 136, .8);
+        border-radius: 15px;
+        padding: 20px;
+        .module-title {
+            font-size: 28px;
+            font-weight: 900;
+            text-align: left;
+        }
     }
 </style>
 
