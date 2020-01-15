@@ -34,7 +34,6 @@
             <v-col>
                 <Feed/>
             </v-col>
-            <button @click="clearCookie" class="clearCookie">Clear Cookie (DEV ONLY)</button>
         </v-row>
         <v-row v-else class="skeleton"> <!-- CHANGE LATER TO HAVE SKELETON LOADERS -->
             <v-col>
@@ -47,7 +46,6 @@
             <v-col>
                 <div>Lift Status</div>
             </v-col>
-            <button @click="clearCookie" class="clearCookie">Clear Cookie (DEV ONLY)</button>
         </v-row>
     </div>
 </template>
@@ -107,10 +105,6 @@ export default {
         changeResort() {
             this.$data.resort = this.$cookie.get('resort');
             this.getInfo();
-        },
-        clearCookie() {
-            this.$cookie.delete('name');
-            this.$cookie.delete('resort');
         }
     }
 }
@@ -191,5 +185,6 @@ export default {
     }
     .content {
         height: calc(100% - 156px);
+        justify-content: space-between
     }
 </style>
