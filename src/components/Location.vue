@@ -3,17 +3,10 @@
         <h1 class="my-resort">My Resort: {{this.$store.state.resortInfo.name}}</h1>
         <button v-if="!edit" @click="openEdit" class="change">change</button>
         <div v-else class="editor">
-            <select v-model="newResort" name="resorts">
-                <option value="alta">Alta</option>
-                <option value="brighton">Brighton</option>
-                <option value="deer-valley">Deer Valley</option>
-                <option value="jackson-hole">Jackson Hole</option>
-                <option value="parkcity">Park City</option>
-                <option value="snowbird">Snowbird</option>
-                <option value="solitude">Solitude</option>
-            </select>
-            <button @click="cancel" class="cancel">Cancel</button>
-            <button @click="confirm" class="confirm">Confirm</button>
+            <v-select v-model="newResort " class="resort-input" color="white" label="Resort" :items="resortList" item-text="display" item-value="api">
+            </v-select>
+            <button @click="cancel" class="cancel"><v-icon>mdi-cancel</v-icon></button>
+            <button @click="confirm" class="confirm"><v-icon>mdi-check</v-icon></button>
         </div>
     </div>
 </template>
@@ -24,7 +17,8 @@ export default {
     data() {
         return {
             edit: false,
-            newResort: ''
+            newResort: '',
+            resortList: this.$store.state.resortList
         }
     },
     methods: {
@@ -44,7 +38,33 @@ export default {
 </script>
 
 <style scoped lang="scss">
-    .my-resort {
-        text-transform: capitalize;
+    .location {
+        padding-top: 20px;
+        text-align: right;
+        .my-resort {
+            text-transform: capitalize;
+            font-size: 28px;
+            font-weight: 900;
+        }
+        .change {
+            text-decoration: underline;
+        }
+        .editor {
+            height: 40px;
+            display: flex;
+            justify-content: space-between;
+            width: 90%;
+            max-width: 300px;
+            margin-left: auto;
+
+
+            i, input {
+                color: white;
+            }
+
+            .cancel, .confirm {
+                margin-left: 10px;
+            }
+        }
     }
 </style>

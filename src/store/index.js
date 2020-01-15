@@ -8,7 +8,15 @@ export default new Vuex.Store({
     onboard: true,
     name: '',
     resort: '',
-    resortInfo: {}
+    resortInfo: {},
+    resortList: [
+      {api: '', display: ''},
+      {api: "alta", display: "Alta"},
+      {api: "brighton", display: "Brighton"},
+      {api: "parkcity", display: "Park City"},
+      {api: "snowbird", display: "Snowbird"},
+      {api: "solitude", display: "Solitude"}
+    ]
   },
   mutations: {
     submitOnboard (state, obj) {

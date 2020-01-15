@@ -4,24 +4,26 @@
         <h1 class="welcome">Welcome to SendIT</h1>
         <h2 class="explanation">We just need a tiny bit of information</h2>
         <div class="name-container">
-            <v-text-field v-model="name" label="Name" class="name-input" v-bind:class="{ missing: noName }"/>
+            <v-text-field v-model="name" class="name-input" label="Name" color="white"/>
         </div>
         <div class="resort-container">
-            <h3 class="resort-label">Resort</h3>
-            <select v-model="resort " class="resort-input" v-bind:class="{ missing: noResort }">
-                
-            </select>
+            <v-select v-model="resort " class="resort-input" color="white" label="Resort" :items="resortList" item-text="display" item-value="api">
+            </v-select>
         </div>
         <button @click="submit" class="submit-button">SEND IT</button>
     </div>
     <!-- rendered if cookie has user data -->
     <div v-else class="dashboard">
-        <header>
-            <h1>Good Morning, {{name}}</h1>
-            <h2 class="time">It is {{time}} on {{date}}</h2>
-            <Location @update="changeResort"/>
-        </header>
-        <div class="info" v-if="api">
+        <v-row class="header">
+                <v-col cols="7" class="header-left">
+                    <h1 class="greeting">Hello, {{name}}</h1>
+                    <h2 class="time">It is {{time}} on {{date}}</h2>
+                </v-col>
+                <v-col cols="5">
+                    <Location @update="changeResort"/>
+                </v-col>
+        </v-row>
+        <v-row class="content" v-if="api">
             <section class="left">
                 <Weather/>
                 <Webcams/>
@@ -29,8 +31,8 @@
             <Feed/>
             <Lifts/>
             <button @click="clearCookie" class="clearCookie">Clear Cookie (DEV ONLY)</button>
-        </div>
-        <div v-else class="skeleton"> <!-- CHANGE LATER TO HAVE SKELETON LOADERS -->
+        </v-row>
+        <v-row v-else class="skeleton"> <!-- CHANGE LATER TO HAVE SKELETON LOADERS -->
             <section class="left">
                 <div>Weather</div>
                 <div>Webcams</div>
@@ -38,7 +40,7 @@
             <div>TwitterFeed</div>
             <div>Lift Status</div>
             <button @click="clearCookie" class="clearCookie">Clear Cookie (DEV ONLY)</button>
-        </div>
+        </v-row>
     </div>
 </template>
 
@@ -57,10 +59,10 @@ export default {
             name: this.$cookie.get('name') || '', // if the cookie doesn't exist, it should set it to "" instead of undefined
             resort: this.$cookie.get('resort') || '',
             time: new Date().toLocaleTimeString([], {hour: "numeric", minute: "2-digit"}), // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toLocaleTimeString
-            date: new Date().toLocaleDateString([], {weekday: "long", month: "long", day: "numeric", year:"numeric"}),
-            noResort: false,
-            noName: false,
-            api: false
+            date: new Date().toLocaleDateString([], {month: "long", day: "numeric", year:"numeric"}),
+            api: false,
+            resortList: this.$store.state.resortList,
+            timeOfDay: 'Morning'
         }
     },
     mounted: function () {
@@ -79,9 +81,6 @@ export default {
     methods: {
         submit() {
             let {name, resort, noResort, noName} = this.$data;
-            noResort = resort ? false : true; // checking to see if the input is truthy
-            noName = name ? false : true;
-
             if (name&&resort) { // if both are truthy, it sets cookies that expire in 5 years, might be overkill but whatever
                 this.$cookie.set('name', name, {expires: '5Y'});
                 this.$cookie.set('resort', resort, {expires: '5Y'});
@@ -90,7 +89,9 @@ export default {
             }
         },
         getInfo() {
+            console.log('in get info');
             axios.get(`https://cors-anywhere.herokuapp.com/https://liftie.info/api/resort/${this.$data.resort}`).then(res => {
+                console.log('got resort info')
                 this.$store.commit('resortInfo', res.data);
                 this.$data.api = true;
             })
@@ -98,42 +99,89 @@ export default {
         changeResort() {
             this.$data.resort = this.$cookie.get('resort');
             this.getInfo();
+        },
+        clearCookie() {
+            this.$cookie.delete('name');
+            this.$cookie.delete('resort');
         }
     }
 }
 </script>
 
-<style scoped lang="scss">
+<style lang="scss">
     .onboarding {
-    //    width: 700px;
-    //    height: 450px;
-       background-color: rgba(70, 115, 136, .6);
-       border-radius: 20px;
-       padding: 50px;
-       color: white;
+        background-color: rgba(70, 115, 136, .8);
+        border-radius: 20px;
+        padding: 50px;
+        color: white;
+        .welcome {
+            font-size: 60px;
+            font-weight: 900;
+        }
+        .explanation {
+            font-size: 32px;
+            font-weight: 200;
+        }
+        .name-container, .resort-container {
+            display: flex;
+            width: 50%;
+            justify-content: space-between;
+            margin-left: 25%;
+            margin-top: 20px;
+        }
+        
+        .submit-button {
+            background-color: white;
+            font-size: 32px;
+            font-weight: 800;
+            color: #49768b;
+            padding: 5px 20px;
+            border-radius: 15px;
+        }
+    }
+    .theme--light.v-label {
+            color: white !important;
+    }
+    .theme--light.v-select .v-select__selections,
+    .theme--light.v-input:not(.v-input--is-disabled) input {
+        color: white !important;
+        font-size: 24px;
+    }
+    .v-input__slot:before {
+        border: none !important;
+    }
+    
+    .v-select__selections {
+        line-height: 30px;
+    }
+    .v-select__selection--comma {
+        overflow: visible !important;
+    }
 
-       .welcome {
-           font-size: 60px;
-           font-weight: 900;
-       }
+    .theme--light.v-icon {
+        color: white !important;
+    }
+</style>
 
-       .explanation {
-           font-size: 32px;
-           font-weight: 200;
-       }
-
-       .name-container, .resort-container {
-           display: flex;
-           width: 70%;
-           justify-content: space-between;
-           margin-left: 15%;
-           margin-top: 20px;
-
-           .name-label, .resort-label {
-               width: 30%;
-               text-align: right;
-               margin: 0;
-           }
-       }
+<style lang="scss" scoped>
+    .header {
+        width: 100%;
+        color: white;
+        display: flex;
+        justify-content: space-between; 
+        .header-left {
+            text-align: left;
+            .greeting {
+                font-size: 60px;
+                font-weight: 900;
+            }
+            .time {
+                font-size: 28px;
+                font-weight: 400;
+            }
+        }
+    }
+    .content {
+        height: calc(100% - 156px);
     }
 </style>

@@ -17,5 +17,8 @@ export default {
 </script>
 
 <style scoped lang="scss">
-
+    .media {
+        max-width: 200px;
+        height: auto;
+    }
 </style>

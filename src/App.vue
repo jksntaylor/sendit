@@ -1,6 +1,10 @@
 <template>
-  <v-app id="app">
-    <Dashboard/>
+  <v-app>
+    <v-container fluid>
+      <div id="app">
+        <Dashboard/>
+      </div>
+    </v-container>
   </v-app>
 </template>
 
@@ -20,7 +24,10 @@ export default {
 </script>
 
 <style lang="scss">
+$body-font-family: "Avenir", sans-serif;
+$heading-font-family: "Avenir", sans-serif;
 #app {
+  :focus {outline: none}
   height: 100vh;
   display: flex;
   justify-content: center;
@@ -32,6 +39,19 @@ export default {
   color: #2c3e50;
   background-image: url("./assets/bg.jpg");
   background-size: cover;
-  background-position: top center;
+  background-position: top left;
+
+  .dashboard {
+    height: 100%;
+    width: 100%;
+    max-width: 1100px;
+    margin: auto;
+    padding: 30px;
+    overflow: hidden;
+  }
+
+  .v-application {
+    font-family: 'Avenir' Helvetica, sans-serif !important;
+  }
 }
 </style>
